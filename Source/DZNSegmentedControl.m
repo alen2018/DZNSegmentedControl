@@ -536,6 +536,7 @@
     void (^completion)(BOOL finished) = ^void(BOOL finished){
         self.userInteractionEnabled = YES;
         _transitioning = NO;
+        [self.buttons[segment] setSelected:YES];
     };
     
     if (animated) {
