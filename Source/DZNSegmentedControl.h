@@ -36,6 +36,7 @@ enum {
 @property (nonatomic, readwrite) CGFloat width UI_APPEARANCE_SELECTOR;
 /** The height of the selection indicator. Default is 2pts. */
 @property (nonatomic, readwrite) CGFloat selectionIndicatorHeight UI_APPEARANCE_SELECTOR;
+@property (nonatomic, readwrite) UIColor *selectionIndicatorBackgroundColor UI_APPEARANCE_SELECTOR;
 @property (nonatomic, strong) UIView *selectionIndicator;
 /** The duration of the indicator's animation. Default is 0.2 sec. */
 @property (nonatomic, readwrite) CGFloat animationDuration UI_APPEARANCE_SELECTOR;

@@ -705,7 +705,7 @@
                 [attributedString addAttribute:NSForegroundColorAttributeName value:color range:NSMakeRange(0, string.length)];
                 
                 if (state == UIControlStateSelected) {
-                    self.selectionIndicator.backgroundColor = color;
+                    self.selectionIndicator.backgroundColor = self.selectionIndicatorBackgroundColor?self.selectionIndicatorBackgroundColor:color;
                 }
             }
         }
@@ -848,7 +848,7 @@
 - (void)configureAccessoryViews
 {
     self.selectionIndicator.frame = [self selectionIndicatorRect];
-    self.selectionIndicator.backgroundColor = self.tintColor;
+    self.selectionIndicator.backgroundColor = self.selectionIndicatorBackgroundColor?self.selectionIndicatorBackgroundColor:self.tintColor;
     
     self.hairline.frame = [self hairlineRect];
 }
