@@ -13,7 +13,6 @@
 @interface DZNSegmentedControl ()
 
 @property (nonatomic) BOOL initializing;
-@property (nonatomic, strong) UIView *selectionIndicator;
 @property (nonatomic, strong) UIView *hairline;
 @property (nonatomic, strong) NSMutableDictionary *colors;
 @property (nonatomic, strong) NSMutableArray *counts; // of NSNumber
