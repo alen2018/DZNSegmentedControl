@@ -80,6 +80,7 @@
     _adjustsButtonTopInset = YES;
     _disableSelectedSegment = YES;
     _font = [UIFont systemFontOfSize:15.0f];
+    _selectedFont = nil;
     
     _selectionIndicator = [UIView new];
     _selectionIndicator.backgroundColor = self.tintColor;
@@ -527,6 +528,7 @@
     self.userInteractionEnabled = NO;
     
     _selectedSegmentIndex = segment;
+    [self willSelectedButton:self.buttons[_selectedSegmentIndex]];
     _transitioning = YES;
     
     void (^animations)() = ^void(){
@@ -536,7 +538,7 @@
     void (^completion)(BOOL finished) = ^void(BOOL finished){
         self.userInteractionEnabled = YES;
         _transitioning = NO;
-        [self.buttons[segment] setSelected:YES];
+        [self didSelectButton:self.buttons[_selectedSegmentIndex]];
     };
     
     if (animated) {
@@ -709,7 +711,14 @@
             }
         }
         else {
-            [attributedString addAttribute:NSFontAttributeName value:self.font range:NSMakeRange(0, attributedString.string.length)];
+            UIFont *font=self.font;
+            if (self.selectedFont) {
+                if (state==UIControlStateSelected || state == UIControlStateHighlighted) {
+                    font = self.selectedFont;
+                }
+            }
+            
+            [attributedString addAttribute:NSFontAttributeName value:font range:NSMakeRange(0, attributedString.string.length)];
             [attributedString addAttribute:NSForegroundColorAttributeName value:color range:NSMakeRange(0, attributedString.string.length)];
         }
         
@@ -738,6 +747,17 @@
     }
     
     _font = font;
+    
+    [self configureSegments];
+}
+
+- (void)setSelectedFont:(UIFont *)selectedFont
+{
+    if ( [self.selectedFont.fontName isEqualToString:selectedFont.fontName] && self.selectedFont.pointSize == selectedFont.pointSize ) {
+        return;
+    }
+    
+    _selectedFont = selectedFont;
     
     [self configureSegments];
 }
