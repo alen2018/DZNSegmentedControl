@@ -522,6 +522,10 @@
         return;
     }
     
+    if (segment<0 || segment>=self.buttons.count) {
+        return;
+    }
+    
     [self unselectAllButtons];
     
     self.userInteractionEnabled = NO;
